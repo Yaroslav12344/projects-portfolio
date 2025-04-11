@@ -78,7 +78,7 @@ values(?, ?, ?, ?)""" # Запиши сюда правильный SQL запр�
 
 
     def get_statuses(self):
-        sql="SELECT status_name from status" # Запиши сюда правильный SQL запрос
+        sql="SELECT status_name from status" # Запиши сюда правильный SQL запрос [('ывапаып',),('ываывп')
         return self.__select_data(sql)
         
 
@@ -131,6 +131,12 @@ WHERE user_id = ? AND project_id = ? """ # Запиши сюда правиль�
         sql = """DELETE FROM skills 
 WHERE skill_id = ? AND project_id = ? """ # Запиши сюда правильный SQL запрос
         self.__executemany(sql, [(skill_id, project_id)])
+    
+    #создай функцию, которая будет удалять все проекты пользователя
+    def delete_projects(self, user_id):
+        sql = """DELETE FROM projects 
+    WHERE user_id = ? """ # Запиши сюда правильный SQL запрос
+        self.__executemany(sql, [(user_id,)])
 
 
 if __name__ == '__main__':
@@ -141,3 +147,4 @@ if __name__ == '__main__':
     print(manager.get_skills())
     print(manager.get_statuses())
     
+
